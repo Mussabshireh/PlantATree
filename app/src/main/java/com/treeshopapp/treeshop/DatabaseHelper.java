@@ -31,8 +31,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase treeDatabase = this.getWritableDatabase();//sqllite database object
         ContentValues contentValues = new ContentValues(); //helps write to the database
         contentValues.put("username",username);
+        contentValues.put("address",email);
         contentValues.put("password",password);
-        contentValues.put("emailaddress",email);
+
 
 
         long result = treeDatabase.insert("users", null,contentValues);
@@ -44,6 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         else{
             return true;
         }
+
 
     }
 

@@ -68,6 +68,16 @@ public class LoginPage extends AppCompatActivity {
             }
 
         });
+        //link to signup page for new user
+        Button signupButtonLink = (Button) findViewById(R.id.loginSignupButton);
+        signupButtonLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(LoginPage.this, SignUpPage.class);
+                //myIntent.putExtra("key", value); //Optional parameters could be used to pass in username
+                LoginPage.this.startActivity(myIntent);
 
+            }
+        });
    }
 }
