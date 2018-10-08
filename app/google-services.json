@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "876624698731",
+    "firebase_url": "https://treeapp-36733.firebaseio.com",
+    "project_id": "treeapp-36733",
+    "storage_bucket": "treeapp-36733.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876624698731:android:a5e7d1e45f25095e",
+        "android_client_info": {
+          "package_name": "com.treeshopapp.treeshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876624698731-1g8ome420dn8pop6uimlacs815lufhgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaL-x7RpETY29QoBPiuDCPslHwR-Nn3co"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

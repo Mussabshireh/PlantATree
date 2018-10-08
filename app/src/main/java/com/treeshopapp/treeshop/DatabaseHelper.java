@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase treeDatabase) {
         treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS users (_id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(30), password VARCHAR(10), emailaddress VARCHAR (50) )");
-        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS tree (_id INTEGER PRIMARY KEY AUTOINCREMENT, tree_name VARCHAR(50), price INTEGER )");
+        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS tree (_id INTEGER PRIMARY KEY AUTOINCREMENT, tree_name VARCHAR(50), price INTEGER, image tree_photo )");
         treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS orders (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, tree_id INTEGER NOT NULL, price INTEGER, the_numer_of_tree INTEGER NOT NULL)");
     };
 
@@ -48,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
     }
+
 
     public boolean userAuthentication(String username, String password)
     {
