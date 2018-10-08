@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+
+    <TextView
+        android:id="@+id/TheNameOfTreeInCart"
+        android:layout_width="114dp"
+        android:layout_height="57dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/TheQuantityInCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/ThePriceInCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+</LinearLayout>

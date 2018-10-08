@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.treeshopapp.treeshop">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,10 +24,9 @@
         <activity
             android:name=".SignUpPage"
             android:label="@string/app_name" />
-        <activity android:name=".OrderTreePage"></activity>
-        <activity android:name=".LoginPage"></activity>
-
-
+        <activity android:name=".OrderTreePage" />
+        <activity android:name=".LoginPage" />
+        <activity android:name=".ShoppingCart"></activity>
     </application>
 
 </manifest>
