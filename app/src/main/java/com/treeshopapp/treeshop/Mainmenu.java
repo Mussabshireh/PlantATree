@@ -29,11 +29,17 @@ public class Mainmenu extends AppCompatActivity implements View.OnClickListener 
         Tree apple=new Tree("apple tree", 200, R.drawable.appletree);
         Tree pear=new Tree("pear tree", 210, R.drawable.peartree);
         Tree kiwi=new Tree("kiwi tree", 215,R.drawable.kiwitree);
+        Tree grape=new Tree("grape tree", 300, R.drawable.grapetree);
+        Tree sakura=new Tree("sakura tree", 270, R.drawable.sakuratree);
+        Tree mango=new Tree("mango stree", 290, R.drawable.mangotree);
 
         final ArrayList<Tree> TreeList=new ArrayList<>();
         TreeList.add(apple);
         TreeList.add(pear);
         TreeList.add(kiwi);
+        TreeList.add(grape);
+        TreeList.add(sakura);
+        TreeList.add(mango);
 
         TreeListAdapter adapter=new TreeListAdapter(this, R.layout.itemrow, TreeList);
 
@@ -45,6 +51,7 @@ public class Mainmenu extends AppCompatActivity implements View.OnClickListener 
                 Intent intent=new Intent();
                 intent.putExtra("Name", TreeList.get(i).getTheNameOfTree());
                 intent.putExtra("Image", TreeList.get(i).getImgURL());
+                intent.putExtra("Price", TreeList.get(i).getStringPirce());
 
                 intent.setClass(Mainmenu.this, OrderTreePage.class);
                 startActivity(intent);

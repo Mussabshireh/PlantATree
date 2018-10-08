@@ -15,8 +15,12 @@ public class Tree {
         return this.NameOfTree;
     }
 
-    public int getPrice(){
+    public int getIntPrice(){
         return this.price;
+    }
+
+    public String getStringPirce(){
+        return String.valueOf(this.price);
     }
 
     public int getImgURL(){

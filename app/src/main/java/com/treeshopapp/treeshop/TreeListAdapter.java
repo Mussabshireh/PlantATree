@@ -65,7 +65,7 @@ public class TreeListAdapter extends ArrayAdapter<Tree>{
         Tree treeItem=data.get(position);
         holder.treeName.setText(treeItem.getTheNameOfTree());
         holder.treeImg.setImageResource(treeItem.getImgURL());
-
+        holder.price.setText(treeItem.getStringPirce());
         return convertView;
     }
 }
