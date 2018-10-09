@@ -19,14 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginPage extends AppCompatActivity {
-    private FirebaseAuth firebaseAuth;
+    DatabaseHelper database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        database =  new DatabaseHelper(this);
 
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
@@ -40,6 +40,14 @@ public class LoginPage extends AppCompatActivity {
                 //checks if entered credentials are not empty
                 if(TextUtils.isEmpty(email.getText().toString()) ||  TextUtils.isEmpty(password.getText().toString())) //checks if both username or password is not empty
                 {
+
+
+                    if(TextUtils.isEmpty(email.getText().toString()) && TextUtils.isEmpty(password.getText().toString()))
+                    {
+                        email.requestFocus();
+                        password.requestFocus();
+                        Toast.makeText(LoginPage.this, "Please fill in all the fields",Toast.LENGTH_LONG).show();
+                    }
                     if(email.length() == 0)
                     {
                         email.setError("Please enter an Email");
@@ -50,16 +58,15 @@ public class LoginPage extends AppCompatActivity {
                     {
                         password.setError("Please enter an Password");
                         password.requestFocus();
-                    }
 
-                    //Toast.makeText(LoginPage.this, "Please fill in all the fields",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
 
-                    firebaseAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) { //Authenticates user by checking if account exists in database
-                            if(task.isSuccessful())
+                            //Authenticates user by checking if account exists in database
+                             boolean  userAuthentication = database.userAuthentication(email.getText().toString(),password.getText().toString());
+
+                            if(userAuthentication == true)
                             {
                                 Toast.makeText(LoginPage.this, "Login Successful",Toast.LENGTH_SHORT).show();
                                 Intent myIntent = new Intent(LoginPage.this, Mainmenu.class);
@@ -73,8 +80,8 @@ public class LoginPage extends AppCompatActivity {
                                 Toast.makeText(LoginPage.this,"Error incorrect login details, please check and try again",Toast.LENGTH_LONG).show();
 
                             }
-                        }
-                    });
+
+
 
                 }
 
@@ -82,16 +89,16 @@ public class LoginPage extends AppCompatActivity {
 
         });
 
-        //link to signup page for new user
-        Button signupButtonLink = (Button) findViewById(R.id.loginSignupButton);
-        signupButtonLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(LoginPage.this, SignUpPage.class);
-                //myIntent.putExtra("key", value); //Optional parameters could be used to pass in username
-                LoginPage.this.startActivity(myIntent);
+                //link to signup page for new user
+                Button signupButtonLink = (Button) findViewById(R.id.loginSignupButton);
+                signupButtonLink.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent myIntent = new Intent(LoginPage.this, SignUpPage.class);
+                        //myIntent.putExtra("key", value); //Optional parameters could be used to pass in username
+                        LoginPage.this.startActivity(myIntent);
 
-            }
+                    }
         });
    }
 }

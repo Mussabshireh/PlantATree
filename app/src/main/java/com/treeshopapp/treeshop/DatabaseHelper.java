@@ -9,22 +9,22 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
-    private static final String DBName="TreeApp";
+    private static final String DBName="TreeApp2";
     private static final int DATABASE_VERSION=1;
 
 
     @Override
     public void onCreate(SQLiteDatabase treeDatabase) {
-        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS users (_id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(30), password VARCHAR(10), emailaddress VARCHAR (50) )");
-        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS tree (_id INTEGER PRIMARY KEY AUTOINCREMENT, tree_name VARCHAR(50), price INTEGER, image tree_photo )");
-        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS orders (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, tree_id INTEGER NOT NULL, price INTEGER, the_numer_of_tree INTEGER NOT NULL)");
+        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS Users (_id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(30), password VARCHAR(10), emailaddress VARCHAR (50) )");
+        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS Tree (_id INTEGER PRIMARY KEY AUTOINCREMENT, tree_name VARCHAR(50), price INTEGER, image tree_photo )");
+        treeDatabase.execSQL("CREATE TABLE IF NOT EXISTS Orders (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, tree_id INTEGER NOT NULL, price INTEGER, the_numer_of_tree INTEGER NOT NULL)");
     };
 
     @Override
     public void onUpgrade(SQLiteDatabase treeDatabase, int i, int i1) {
-        treeDatabase.execSQL("DROP TABLE IF EXISTS users");
-        treeDatabase.execSQL("DROP TABLE IF EXISTS tree");
-        treeDatabase.execSQL("DROP TABLE IF EXISTS orders");
+        treeDatabase.execSQL("DROP TABLE IF EXISTS Users");
+        treeDatabase.execSQL("DROP TABLE IF EXISTS Tree");
+        treeDatabase.execSQL("DROP TABLE IF EXISTS Orders");
     }
 
     public boolean registerUser(String username, String password, String email){
@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
 
-        long result = treeDatabase.insert("users", null,contentValues);
+        long result = treeDatabase.insert("Users", null,contentValues);
 
         if(result == -1)
         {
@@ -50,11 +50,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    public boolean userAuthentication(String username, String password)
+    public boolean userAuthentication(String email, String password)
     {
         //Readable function allows the reading of database values
         SQLiteDatabase treeDatabase = this.getReadableDatabase();
-       Cursor check = treeDatabase.rawQuery("SELECT username , password FROM users WHERE username='"+ username + "'" + "AND password='"+password+"'",null);
+       Cursor check = treeDatabase.rawQuery("SELECT emailaddress , password FROM Users WHERE emailaddress='"+ email + "'" + "AND password='"+password+"'",null);
 
         String tempU,tempP;
         boolean authentication = false ;
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                tempU = check.getString(0);
                tempP = check.getString(1);
 
-               if(tempU.equals(username)&& tempP.equals(password))
+               if(tempU.equals(email)&& tempP.equals(password))
                {
                    authentication =  true;
                    break;
@@ -78,10 +78,27 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
            }while(check.moveToNext());
+
+           check.close();
        }
 
     //returns if true or false if user has access to the requested account
       return authentication;
+    }
+
+    public boolean CheckIsDataAlreadyInDBorNot(String email) {
+        SQLiteDatabase treeDatabase = this.getReadableDatabase();
+
+        String Query = "Select * from " + "Users" + " where " + "emailaddress" + " = " + email;
+        Cursor cursor = treeDatabase.rawQuery("SELECT emailaddress FROM Users WHERE emailaddress='"+ email + "'",null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+
     }
 
 
