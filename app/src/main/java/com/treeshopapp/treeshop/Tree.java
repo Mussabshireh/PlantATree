@@ -27,4 +27,9 @@ public class Tree {
         return this.ImgURL;
     }
 
+    public String treeDetails(){
+
+        return this.treeDetails();
+    }
+
 }
