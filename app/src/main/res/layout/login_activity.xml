@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.919" />
+            app:layout_constraintVertical_bias="0.851" />
 
         <TextView
             android:id="@+id/textView6"
@@ -43,7 +43,7 @@
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.962" />
+            app:layout_constraintVertical_bias="0.893" />
 
         <EditText
             android:id="@+id/loginEmailView"
@@ -77,7 +77,7 @@
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.566" />
+            app:layout_constraintVertical_bias="0.58" />
 
         <Button
             android:id="@+id/loginButton"

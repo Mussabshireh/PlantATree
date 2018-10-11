@@ -17,5 +17,6 @@ public class OrderTreePage extends AppCompatActivity {
 
         treeName.setText(getIntent().getStringExtra("Name"));
         treeImage.setImageResource(getIntent().getIntExtra("Image", R.drawable.appletree));
+
     }
 }
